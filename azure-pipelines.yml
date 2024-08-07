@@ -1,5 +1,6 @@
 trigger:
 - main
+- cucumber-reports
 
 pool:
   vmImage: 'windows-latest'
@@ -13,10 +14,9 @@ steps:
   - task: Maven@3
     inputs:
       goals: 'test'
-      publishJUnitResults: true
-      testResultsFiles: './target/cucumber-reports/Cucumber.json'
-      codeCoverageToolOption: 'None'
-    displayName: 'Maven package'
+      # publishJUnitResults: true
+      # testResultsFiles: './target/cucumber-reports/Cucumber.json'
+    displayName: 'Maven Tests'
 
   - task: PublishTestResults@2
     inputs:
