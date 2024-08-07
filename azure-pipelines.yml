@@ -15,8 +15,8 @@ steps:
     displayName: 'Maven Tests'
     inputs:
       goals: 'test'
-      #publishJUnitResults: true
-      #testResultsFiles: |
+      publishJUnitResults: true
+      testResultsFiles: '**/cucumber-reports/Cucumber.json' #|
       #  $(System.DefaultWorkingDirectory)/**/*.json
       #  $(System.DefaultWorkingDirectory)/**/TEST-*.xml
     continueOnError: true
@@ -24,9 +24,7 @@ steps:
   - task: PublishTestResults@2
     displayName: 'Publish Cucumber Reports'
     inputs:
-      testResultsFiles: |
-        $(System.DefaultWorkingDirectory)/test-results/**/TEST-*.xml
-        $(System.DefaultWorkingDirectory)/test-results/**/*.json
+      testResultsFiles: '**/cucumber-reports/Cucumber.json'
       publishRunAttachments: true
-      searchFolder: '$(System.DefaultWorkingDirectory)/test-results/**/'
+      searchFolder: '$(System.DefaultWorkingDirectory)**/cucumber-reports/*.json'
       continueOnError: true
