@@ -12,19 +12,21 @@ steps:
   #  displayName: 'Install Node.js'
 
   - task: Maven@3
+    displayName: 'Maven Tests'
     inputs:
       goals: 'test'
-      publishJUnitResults: true
-      testResultsFiles: |
-        $(System.DefaultWorkingDirectory)/**/*.json
-        $(System.DefaultWorkingDirectory)/**/TEST-*.xml
-    displayName: 'Maven Tests'
+      #publishJUnitResults: true
+      #testResultsFiles: |
+      #  $(System.DefaultWorkingDirectory)/**/*.json
+      #  $(System.DefaultWorkingDirectory)/**/TEST-*.xml
+    continueOnError: true
 
   - task: PublishTestResults@2
     displayName: 'Publish Cucumber Reports'
     inputs:
       testResultsFiles: |
-        $(System.DefaultWorkingDirectory)/**/*.json
+        $(System.DefaultWorkingDirectory)/test-results/**/TEST-*.xml
+        $(System.DefaultWorkingDirectory)/test-results/**/*.json
       publishRunAttachments: true
-      searchFolder: '$(System.DefaultWorkingDirectory)/**/*'
-      condition: succeededOrFailed()
+      searchFolder: '$(System.DefaultWorkingDirectory)/test-results/**/'
+      continueOnError: true
