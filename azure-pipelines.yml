@@ -30,11 +30,11 @@ steps:
       sonarQubeRunAnalysis: false
     continueOnError: true
 
-  - task: PublishTestResults@2
-    displayName: 'Publish Cucumber Reports'
-    inputs:
-      testRunner: 'JUnit'
-      testResultsFiles: '**/cucumber-reports/Cucumber.json'
-      publishRunAttachments: true
-      searchFolder: '**/cucumber-reports/*.json'
-    continueOnError: true
+  #- task: PublishTestResults@2
+  #  displayName: 'Publish Cucumber Reports'
+  #  inputs:
+  #    testRunner: 'JUnit'
+  #    testResultsFiles: '**/cucumber-reports/Cucumber.json'
+  #    publishRunAttachments: true
+  #    searchFolder: '**/cucumber-reports/*.json'
+  #  continueOnError: true
