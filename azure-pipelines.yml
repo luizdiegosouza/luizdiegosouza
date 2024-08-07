@@ -6,24 +6,25 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '14.x'
-    displayName: 'Install Node.js'
+  #- task: NodeTool@0
+  #  inputs:
+  #    versionSpec: '14.x'
+  #  displayName: 'Install Node.js'
 
   - task: Maven@3
     inputs:
       goals: 'test'
       publishJUnitResults: true
-      testResultsFiles: './target/cucumber-reports/*.json'
+      testResultsFiles: |
+        $(System.DefaultWorkingDirectory)/**/*.json
+        $(System.DefaultWorkingDirectory)/**/TEST-*.xml
     displayName: 'Maven Tests'
 
   - task: PublishTestResults@2
-    inputs:
-      jsonDir: '$(System.DefaultWorkingDirectory)/target/cucumber-reports'
-      outputPath: './target/cucumber-reports'
-      testResultsFiles: '*.json'
-      testRunTitle: 'Test Results'
-      name: 'Test Results'
-      title: API
     displayName: 'Publish Cucumber Reports'
+    inputs:
+      testResultsFiles: |
+        $(System.DefaultWorkingDirectory)/**/*.json
+      publishRunAttachments: true
+      searchFolder: '$(System.DefaultWorkingDirectory)/**/*'
+      condition: succeededOrFailed()
