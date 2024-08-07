@@ -1,0 +1,34 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '14.x'
+    displayName: 'Install Node.js'
+
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'pom.xml'
+      goals: 'test'
+      mavenOptions: '-Xmx3072m'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.8'
+      jdkArchitectureOption: 'x64'
+      publishJUnitResults: true
+      testResultsFiles: '**/TEST-*.xml'
+      codeCoverageToolOption: 'None'
+    displayName: 'Maven package'
+
+  - task: PublishTestResults@2
+    inputs:
+      jsonDir: '$(System.DefaultWorkingDirectory)/target/surefire-reports'
+      outputPath: './target/cucumber-reports'
+      testResultsFiles: '**/TEST-*.xml'
+      testRunTitle: 'Test Results'
+      name: 'Test Results'
+      title: API
+    displayName: 'Publish Cucumber Reports'
