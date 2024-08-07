@@ -10,3 +10,12 @@ Feature: Do something scenarios
   Scenario: AB#37129 - Always pass
     Given I have to do something
     Then it always passes
+
+  @30650
+  Scenario: Also pass scenario
+    Given I have to do something
+    Then it always passes
+
+  Scenario: Another passing scenario
+    Given I have to do something
+    Then it always passes
