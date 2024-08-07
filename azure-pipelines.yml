@@ -15,8 +15,8 @@ steps:
     displayName: 'Maven Tests'
     inputs:
       goals: 'test'
-      publishJUnitResults: true
-      testResultsFiles: '**/cucumber-reports/Cucumber.json' #|
+      #publishJUnitResults: true
+      #testResultsFiles: '**/cucumber-reports/Cucumber.json' #|
       #  $(System.DefaultWorkingDirectory)/**/*.json
       #  $(System.DefaultWorkingDirectory)/**/TEST-*.xml
     continueOnError: true
