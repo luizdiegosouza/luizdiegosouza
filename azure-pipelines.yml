@@ -10,15 +10,20 @@ steps:
   #  inputs:
   #    versionSpec: '14.x'
   #  displayName: 'Install Node.js'
-
-  - task: Maven@3
+  - task: Maven@4
     displayName: 'Maven Tests'
     inputs:
+      mavenPomFile: 'pom.xml'
       goals: 'test'
-      #publishJUnitResults: true
-      #testResultsFiles: '**/cucumber-reports/Cucumber.json' #|
-      #  $(System.DefaultWorkingDirectory)/**/*.json
-      #  $(System.DefaultWorkingDirectory)/**/TEST-*.xml
+      publishJUnitResults: true
+      testResultsFiles: |
+        '**/surefire-reports/TEST-*.xml'
+        '**/cucumber-reports/Cucumber.json'
+      javaHomeOption: 'JDKVersion'
+      mavenVersionOption: 'Default'
+      mavenAuthenticateFeed: false
+      effectivePomSkip: false
+      sonarQubeRunAnalysis: false
 
   - task: PublishTestResults@2
     displayName: 'Publish Cucumber Reports'
