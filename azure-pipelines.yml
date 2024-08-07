@@ -29,6 +29,13 @@ steps:
       effectivePomSkip: false
       sonarQubeRunAnalysis: false
     continueOnError: true
+    
+  - task: PublishCucumberReport@1
+    inputs:
+      jsonDir: '$(System.DefaultWorkingDirectory)'
+      outputPath: '$(System.DefaultWorkingDirectory)'
+      theme: 'simple'
+      reportSuiteAsScenarios: true  
 
   #- task: PublishTestResults@2
   #  displayName: 'Publish Cucumber Reports'
