@@ -14,12 +14,11 @@ steps:
   - task: Maven@3
     displayName: 'Maven Tests'
     inputs:
-      goals: 'install test'
+      goals: 'package'
       #publishJUnitResults: true
       #testResultsFiles: '**/cucumber-reports/Cucumber.json' #|
       #  $(System.DefaultWorkingDirectory)/**/*.json
       #  $(System.DefaultWorkingDirectory)/**/TEST-*.xml
-    continueOnError: true
 
   - task: PublishTestResults@2
     displayName: 'Publish Cucumber Reports'
