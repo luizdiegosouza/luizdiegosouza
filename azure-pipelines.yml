@@ -21,20 +21,20 @@ steps:
       mavenPomFile: 'pom.xml'
       goals: 'test'
       publishJUnitResults: true
-      testResultsFiles: |
-        '**/surefire-reports/TEST-*.xml'
-        '**/cucumber-reports/Cucumber.json'
+      testResultsFiles: '**/cucumber-reports/Cucumber.json'
+        # '**/surefire-reports/TEST-*.xml'
       javaHomeOption: 'JDKVersion'
       mavenVersionOption: 'Default'
       mavenAuthenticateFeed: false
       effectivePomSkip: false
       sonarQubeRunAnalysis: false
-      continueOnError: true
+    continueOnError: true
 
   - task: PublishTestResults@2
     displayName: 'Publish Cucumber Reports'
     inputs:
+      testRunner: 'JUnit'
       testResultsFiles: '**/cucumber-reports/Cucumber.json'
       publishRunAttachments: true
-      searchFolder: '$(System.DefaultWorkingDirectory)**/cucumber-reports/*.json'
-      continueOnError: true
+      searchFolder: '**/cucumber-reports/*.json'
+    continueOnError: true
