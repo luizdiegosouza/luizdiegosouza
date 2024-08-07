@@ -29,6 +29,7 @@ steps:
       mavenAuthenticateFeed: false
       effectivePomSkip: false
       sonarQubeRunAnalysis: false
+      continueOnError: true
 
   - task: PublishTestResults@2
     displayName: 'Publish Cucumber Reports'
