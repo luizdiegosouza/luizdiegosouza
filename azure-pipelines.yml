@@ -21,7 +21,7 @@ steps:
       mavenPomFile: 'pom.xml'
       goals: 'test'
       publishJUnitResults: true
-      testResultsFiles: '**/cucumber-reports/Cucumber.json'
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
         # '**/surefire-reports/TEST-*.xml'
       javaHomeOption: 'JDKVersion'
       mavenVersionOption: 'Default'
