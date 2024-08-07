@@ -14,13 +14,13 @@ steps:
   - task: Maven@3
     inputs:
       goals: 'test'
-      # publishJUnitResults: true
-      # testResultsFiles: './target/cucumber-reports/Cucumber.json'
+      publishJUnitResults: true
+      testResultsFiles: './target/cucumber-reports/*.json'
     displayName: 'Maven Tests'
 
   - task: PublishTestResults@2
     inputs:
-      jsonDir: '$(System.DefaultWorkingDirectory)/target/surefire-reports'
+      jsonDir: '$(System.DefaultWorkingDirectory)/target/cucumber-reports'
       outputPath: './target/cucumber-reports'
       testResultsFiles: '*.json'
       testRunTitle: 'Test Results'
