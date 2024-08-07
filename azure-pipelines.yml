@@ -12,14 +12,9 @@ steps:
 
   - task: Maven@3
     inputs:
-      mavenPomFile: 'pom.xml'
       goals: 'test'
-      mavenOptions: '-Xmx3072m'
-      javaHomeOption: 'JDKVersion'
-      jdkVersionOption: '1.8'
-      jdkArchitectureOption: 'x64'
       publishJUnitResults: true
-      testResultsFiles: '**/TEST-*.xml'
+      testResultsFiles: './target/cucumber-reports/Cucumber.json'
       codeCoverageToolOption: 'None'
     displayName: 'Maven package'
 
@@ -27,7 +22,7 @@ steps:
     inputs:
       jsonDir: '$(System.DefaultWorkingDirectory)/target/surefire-reports'
       outputPath: './target/cucumber-reports'
-      testResultsFiles: '**/TEST-*.xml'
+      testResultsFiles: '*.json'
       testRunTitle: 'Test Results'
       name: 'Test Results'
       title: API
