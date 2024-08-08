@@ -34,7 +34,7 @@ steps:
     inputs:
       jsonDir: '$(System.DefaultWorkingDirectory)'
       outputPath: '$(System.DefaultWorkingDirectory)'
-      theme: 'simple'
+      theme: 'bootstrap'
       reportSuiteAsScenarios: true  
 
   #- task: PublishTestResults@2
