@@ -1,13 +1,13 @@
 @all
 Feature: Do something scenarios
 
-  @AB#37995 @37995
-  Scenario: AB#37995 - Failure always
+  @AB#37129 @37129
+  Scenario: AB#37129 - Failure always
     Given I have to do something
     Then it always fails
 
-  @AB#37129 @37129
-  Scenario: AB#37129 - Always pass
+  @AB#33310 @33310
+  Scenario: AB#33310 - Always pass
     Given I have to do something
     Then it always passes
 
